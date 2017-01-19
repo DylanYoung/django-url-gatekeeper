@@ -1,4 +1,9 @@
-from django.core.cache import get_cache
+try:
+    from django.core.cache import caches
+    def get_cache(cache_name):
+        return caches[cache_name]
+except ImportError:
+    from django.core.cache import get_cache
 import random, string
 import urlparse, urllib
 
